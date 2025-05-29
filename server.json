@@ -1,0 +1,77 @@
+{
+	"pets": [
+		{
+			"id": "1",
+			"name": "Max",
+			"age": "2 anos",
+			"details": "Porte Médio",
+			"location": "São Paulo, SP",
+			"description": "Max é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/641"
+		},
+		{
+			"id": "2",
+			"name": "Bella",
+			"age": "1 ano",
+			"details": "Porte Pequeno",
+			"location": "Rio de Janeiro, RJ",
+			"description": "Bella é uma gata muito amorosa e brincalhona. Ela adora brincar com os outros gatos.",
+			"image": "https://placedog.net/642"
+		},
+		{
+			"id": "3",
+			"name": "Luna",
+			"age": "3 anos",
+			"details": "Porte Grande",
+			"location": "Belo Horizonte, MG",
+			"description": "Luna é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/643"
+		},
+		{
+			"id": "4",
+			"name": "Rocky",
+			"age": "4 anos",
+			"details": "Porte Médio",
+			"location": "Curitiba, PR",
+			"description": "Rocky é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/645"
+		},
+		{
+			"id": "5",
+			"name": "Max",
+			"age": "2 anos",
+			"details": "Porte Médio",
+			"location": "São Paulo, SP",
+			"description": "Max é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/650"
+		},
+		{
+			"id": "6",
+			"name": "Bella",
+			"age": "1 ano",
+			"details": "Porte Pequeno",
+			"location": "Rio de Janeiro, RJ",
+			"description": "Bella é uma gata muito amorosa e brincalhona. Ela adora brincar com os outros gatos.",
+			"image": "https://placedog.net/646"
+		},
+		{
+			"id": "7",
+			"name": "Luna",
+			"age": "3 anos",
+			"details": "Porte Grande",
+			"location": "Belo Horizonte, MG",
+			"description": "Luna é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/647"
+		},
+		{
+			"id": "8",
+			"name": "Rocky",
+			"age": "4 anos",
+			"details": "Porte Médio",
+			"location": "Curitiba, PR",
+			"description": "Rocky é um cachorro muito amoroso e brincalhão. Ele adora passear e brincar com os outros cachorros.",
+			"image": "https://placedog.net/500"
+		}
+	],
+	"users": []
+}
