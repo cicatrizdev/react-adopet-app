@@ -5,7 +5,7 @@ import router from './routes';
 import { RouterProvider } from 'react-router';
 import { Contexts } from './contexts';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Contexts>
 			<RouterProvider router={router} />
