@@ -17,12 +17,14 @@
 		"react-error-boundary": "^6.0.0",
 		"react-router": "^7.6.1",
 		"simple-auth-storage": "^1.0.0",
-		"tailwindcss": "^4.1.8"
+		"tailwindcss": "^4.1.8",
+		"typescript": "^5.8.3"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.25.0",
-		"@types/react": "^19.1.2",
-		"@types/react-dom": "^19.1.2",
+		"@tsconfig/vite-react": "^6.3.5",
+		"@types/react": "^19.1.6",
+		"@types/react-dom": "^19.1.5",
 		"@vitejs/plugin-react": "^4.4.1",
 		"eslint": "^9.25.0",
 		"eslint-plugin-react-hooks": "^5.2.0",
