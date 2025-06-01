@@ -83,6 +83,16 @@
       "phone": "11999999999",
       "city": "Teste, teste",
       "about": "Eu gosto de adotar pets"
+    },
+    {
+      "id": "c298",
+      "name": "Pedro",
+      "email": "pedro@email2.com",
+      "password": "123123",
+      "confirmPassword": "123123",
+      "phone": "11999999999",
+      "city": "Aqui mesmo, aqui",
+      "about": "Gosto de programar"
     }
   ]
 }
