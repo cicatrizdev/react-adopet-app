@@ -7,5 +7,3 @@ export interface Pet {
 	description: string;
 	image?: string | null;
 }
-
-export type User = {};
