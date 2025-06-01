@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUsers } from '../../contexts/users/users';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import type { User } from '../../types';
 
 const Profile = () => {
 	const { getUser, updateUser } = useUsers();
-	const [editProfile, setEditProfile] = useState({
+	const [editProfile, setEditProfile] = useState<User>({
 		id: '',
 		name: '',
 		email: '',
@@ -27,7 +28,7 @@ const Profile = () => {
 		});
 	}, [getUser]);
 
-	const handleUpdateUser = async (user) => {
+	const handleUpdateUser = async (user: User) => {
 		const updatedUser = await updateUser(user);
 		if (updatedUser) {
 			return alert('Perfil atualizado com sucesso');
@@ -52,17 +53,17 @@ const Profile = () => {
 				/>
 				<Input
 					label='Telefone'
-					value={editProfile.phone}
+					value={editProfile.phone ?? ''}
 					onChange={(e) => setEditProfile({ ...editProfile, phone: e.target.value })}
 				/>
 				<Input
 					label='Cidade'
-					value={editProfile.city}
+					value={editProfile.city ?? ''}
 					onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })}
 				/>
 				<Input
 					label='Sobre'
-					value={editProfile.about}
+					value={editProfile.about ?? ''}
 					onChange={(e) => setEditProfile({ ...editProfile, about: e.target.value })}
 				/>
 				<Button size='sm' onClick={() => handleUpdateUser(editProfile)}>

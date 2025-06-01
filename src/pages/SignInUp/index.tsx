@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router';
 import Input from '../../components/Input/Input';
 import { useUsers } from '../../contexts/users/users';
+import { type UserRegister, type UserLogin } from '../../types';
 
 const SignInUp = () => {
 	const { login, createUser } = useUsers();
 	const [accessMode, setAccessMode] = useState('');
-	const [loginData, setLoginData] = useState({
+	const [loginData, setLoginData] = useState<UserLogin>({
 		email: '',
 		password: '',
 	});
-	const [registerData, setRegisterData] = useState({
+	const [registerData, setRegisterData] = useState<UserRegister>({
 		name: '',
 		email: '',
 		password: '',
@@ -21,7 +22,6 @@ const SignInUp = () => {
 
 	const handleLogin = async () => {
 		const user = await login(loginData.email, loginData.password);
-		console.log(user);
 		if (user) {
 			return navigate('/');
 		}

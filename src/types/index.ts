@@ -16,3 +16,9 @@ export interface User {
 	city?: string;
 	about?: string;
 }
+
+export type UserLogin = Pick<User, 'email'> & { password: string };
+export type UserRegister = Omit<User, 'id' | 'phone' | 'city' | 'about'> & {
+	password: string;
+	confirmPassword: string;
+};
