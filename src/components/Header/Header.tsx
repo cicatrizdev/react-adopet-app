@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../../assets/adopet.png';
 import user from '../../assets/user.svg';
 import home from '../../assets/home.svg';

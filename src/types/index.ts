@@ -5,7 +5,14 @@ export interface Pet {
 	details: string;
 	location: string;
 	description: string;
-	image?: string | null;
+	image?: string;
 }
 
-export type User = {};
+export interface User {
+	id: string;
+	name: string;
+	email: string;
+	phone?: string;
+	city?: string;
+	about?: string;
+}
