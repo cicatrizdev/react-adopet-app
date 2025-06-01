@@ -17,14 +17,15 @@ const Profile = () => {
 
 	useEffect(() => {
 		const user = getUser();
+		if (!user) return;
 		setEditProfile({
 			...user,
-			id: user?.id,
-			name: user?.name ?? '',
-			email: user?.email ?? '',
-			phone: user?.phone ?? '',
-			city: user?.city ?? '',
-			about: user?.about ?? '',
+			id: user.id,
+			name: user.name,
+			email: user.email,
+			phone: user.phone,
+			city: user.city,
+			about: user.about,
 		});
 	}, [getUser]);
 
