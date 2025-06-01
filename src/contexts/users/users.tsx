@@ -32,7 +32,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 			throw new Error('User already exists');
 		}
 		const data = await fetchData<User, UserRegister>('http://localhost:3001/users', 'POST', user);
-		const token = authStorage.generateToken(data);
+		const token = authStorage.generateToken();
 		authStorage.saveUser(data, token);
 		return data;
 	};
@@ -56,7 +56,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 	const login = async (userLogin: UserLogin) => {
 		const user = await validateUser(userLogin);
 		if (user) {
-			const token = authStorage.generateToken(user);
+			const token = authStorage.generateToken();
 			authStorage.saveUser(user, token);
 		}
 		return user;

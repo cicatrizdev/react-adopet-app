@@ -12,3 +12,7 @@ declare module '*.css' {
 	const content: string;
 	export default content;
 }
+
+declare module 'simple-auth-storage' {
+	export const generateToken: () => string;
+}
