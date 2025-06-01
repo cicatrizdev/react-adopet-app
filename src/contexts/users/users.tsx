@@ -5,14 +5,14 @@ import type { User, UserLogin, UserRegister } from '../../types';
 const UsersContext = createContext<{
 	createUser: (user: UserRegister) => Promise<void>;
 	validateUser: (userLogin: UserLogin) => Promise<User | null>;
-	updateUser: (user: User) => Promise<void>;
+	updateUser: (user: User) => Promise<User | null>;
 	getUser: () => User | null;
 	isAuthenticated: () => boolean;
 	login: (userLogin: UserLogin) => Promise<User | null>;
 }>({
 	createUser: async () => {},
 	validateUser: async () => null,
-	updateUser: async () => {},
+	updateUser: async () => null,
 	getUser: () => null,
 	isAuthenticated: () => false,
 	login: async () => null,
