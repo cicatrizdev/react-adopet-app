@@ -3,7 +3,6 @@ import { useUsers } from '../../contexts/users/users';
 import { useNavigate } from 'react-router';
 import { usePets } from '../../contexts/pets/pets';
 import Card from '../../components/Card/Card';
-import type { Pet } from '../../types';
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -23,7 +22,7 @@ const Home = () => {
 			</h1>
 			{pets.length > 0 ? (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
-					{pets.map((pet: Pet) => (
+					{pets.map((pet) => (
 						<Card key={pet.id} pet={pet} />
 					))}
 				</div>

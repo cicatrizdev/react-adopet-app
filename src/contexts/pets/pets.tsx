@@ -1,13 +1,14 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import type { Pet } from '../../types';
+import { fetchData } from '../../utils';
 
-const PetsContext = createContext();
+const PetsContext = createContext<{ pets: Pet[] }>({ pets: [] });
 
-export const PetsProvider = ({ children }) => {
-	const [pets, setPets] = useState([]);
+export const PetsProvider = ({ children }: { children: React.ReactNode }) => {
+	const [pets, setPets] = useState<Pet[]>([]);
 
 	const fetchPets = async () => {
-		const response = await fetch('http://localhost:3001/pets');
-		const data = await response.json();
+		const data = await fetchData<Pet[]>('http://localhost:3001/pets');
 		setPets(data);
 	};
 

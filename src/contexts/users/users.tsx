@@ -1,18 +1,33 @@
 import { createContext, useContext } from 'react';
 import authStorage from 'simple-auth-storage';
+import type { User, UserLogin, UserRegister } from '../../types';
 
-const UsersContext = createContext();
+const UsersContext = createContext<{
+	createUser: (user: UserRegister) => Promise<void>;
+	validateUser: (userLogin: UserLogin) => Promise<User | null>;
+	updateUser: (user: User) => Promise<void>;
+	getUser: () => User | null;
+	isAuthenticated: () => boolean;
+	login: (userLogin: UserLogin) => Promise<User | null>;
+}>({
+	createUser: async () => {},
+	validateUser: async () => null,
+	updateUser: async () => {},
+	getUser: () => null,
+	isAuthenticated: () => false,
+	login: async () => null,
+});
 
-export const UsersProvider = ({ children }) => {
+export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 	const fetchUsers = async () => {
 		const response = await fetch('http://localhost:3001/users');
 		const data = await response.json();
 		return data;
 	};
 
-	const createUser = async (user) => {
+	const createUser = async (user: UserRegister) => {
 		const checkForDuplicate = await fetchUsers();
-		const isDuplicate = checkForDuplicate.some((u) => u.email === user.email);
+		const isDuplicate = checkForDuplicate.some((u: User) => u.email === user.email);
 		if (isDuplicate) {
 			throw new Error('User already exists');
 		}
@@ -26,16 +41,18 @@ export const UsersProvider = ({ children }) => {
 		return data;
 	};
 
-	const validateUser = async (email, password) => {
+	const validateUser = async (userLogin: UserLogin) => {
 		const users = await fetchUsers();
-		const userFound = users.find((user) => user.email === email && user.password === password);
+		const userFound = users.find(
+			(user: UserLogin) => user.email === userLogin.email && user.password === userLogin.password
+		);
 		if (userFound) {
 			return userFound;
 		}
 		return null;
 	};
 
-	const updateUser = async (user) => {
+	const updateUser = async (user: User) => {
 		const response = await fetch(`http://localhost:3001/users/${user.id}`, {
 			method: 'PUT',
 			body: JSON.stringify(user),
@@ -46,8 +63,8 @@ export const UsersProvider = ({ children }) => {
 		return data;
 	};
 
-	const login = async (email, password) => {
-		const user = await validateUser(email, password);
+	const login = async (userLogin: UserLogin) => {
+		const user = await validateUser(userLogin);
 		if (user) {
 			const token = authStorage.generateToken(user);
 			authStorage.saveUser(user, token);
