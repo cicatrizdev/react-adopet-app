@@ -1,16 +1,17 @@
 import { createContext, useContext } from 'react';
 import authStorage from 'simple-auth-storage';
 import type { User, UserLogin, UserRegister } from '../../types';
+import { fetchData } from '../../utils';
 
 const UsersContext = createContext<{
-	createUser: (user: UserRegister) => Promise<void>;
+	createUser: (user: UserRegister) => Promise<User | null>;
 	validateUser: (userLogin: UserLogin) => Promise<User | null>;
 	updateUser: (user: User) => Promise<User | null>;
 	getUser: () => User | null;
 	isAuthenticated: () => boolean;
 	login: (userLogin: UserLogin) => Promise<User | null>;
 }>({
-	createUser: async () => {},
+	createUser: async () => null,
 	validateUser: async () => null,
 	updateUser: async () => null,
 	getUser: () => null,
@@ -20,8 +21,7 @@ const UsersContext = createContext<{
 
 export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 	const fetchUsers = async () => {
-		const response = await fetch('http://localhost:3001/users');
-		const data = await response.json();
+		const data = await fetchData<User[]>('http://localhost:3001/users');
 		return data;
 	};
 
@@ -31,11 +31,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 		if (isDuplicate) {
 			throw new Error('User already exists');
 		}
-		const response = await fetch('http://localhost:3001/users', {
-			method: 'POST',
-			body: JSON.stringify(user),
-		});
-		const data = await response.json();
+		const data = await fetchData<User, UserRegister>('http://localhost:3001/users', 'POST', user);
 		const token = authStorage.generateToken(data);
 		authStorage.saveUser(data, token);
 		return data;
@@ -43,9 +39,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const validateUser = async (userLogin: UserLogin) => {
 		const users = await fetchUsers();
-		const userFound = users.find(
-			(user: UserLogin) => user.email === userLogin.email && user.password === userLogin.password
-		);
+		const userFound = users.find((user: User) => user.email === userLogin.email);
 		if (userFound) {
 			return userFound;
 		}
@@ -53,11 +47,7 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const updateUser = async (user: User) => {
-		const response = await fetch(`http://localhost:3001/users/${user.id}`, {
-			method: 'PUT',
-			body: JSON.stringify(user),
-		});
-		const data = await response.json();
+		const data = await fetchData<User, User>(`http://localhost:3001/users/${user.id}`, 'PUT', user);
 		const token = authStorage.generateToken();
 		authStorage.saveUser(data, token);
 		return data;
@@ -73,12 +63,12 @@ export const UsersProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const getUser = () => {
-		const user = authStorage.getUser();
+		const user: User | null = authStorage.getUser();
 		return user;
 	};
 
 	const isAuthenticated = () => {
-		const isLoggedIn = authStorage.isLoggedIn();
+		const isLoggedIn: boolean = authStorage.isLoggedIn();
 		return isLoggedIn;
 	};
 
